@@ -12,10 +12,25 @@ public class UserServiceTest {
         String userName = "lisa";
         String password = "lisa123";
         HashMap<String, String> users = new HashMap<>();
+        users.put(userName, password);
         UserService service = new UserService(users);
 
-        service.login(userName, password);
+        String token = service.login(userName, password);
 
-        Assertions.assertEquals(users.get(userName), password);
+        Assertions.assertNotNull(token);
+
+        //GC(garbage-collect)销毁数据
+    }
+
+    @Test
+    public void should_register_success_when_user_register_given_valid_user_name_and_password() {
+        String userName = "lisa";
+        String password = "lisa123";
+        HashMap<String, String> users = new HashMap<>();
+        UserService service = new UserService(users);
+
+        service.register(userName, password);
+
+        Assertions.assertNotEquals(0, users.size());
     }
 }
