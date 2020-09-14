@@ -1,10 +1,17 @@
 package UserService;
 
+import java.util.HashMap;
+
 public class UserService {
-    public long login(String userName, String password) {
+    private final HashMap<String, String> users;
+
+    public UserService(HashMap<String, String> users) {
+        this.users = users;
+    }
+
+    public void login(String userName, String password) {
         if (userName != null && password != null) {
-            return 123;
+            users.put(userName, password);
         }
-        return 0;
     }
 }
