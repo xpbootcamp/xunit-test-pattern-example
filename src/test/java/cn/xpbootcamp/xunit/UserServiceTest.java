@@ -4,14 +4,17 @@ package cn.xpbootcamp.xunit;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 public class UserServiceTest {
     @Test
     public void should_login_success_when_user_login_given_valid_user_name_and_password() {
         String userName = "lisa";
         String password = "lisa123";
-        UserRepo userRepo = new UserRepo();
-        userRepo.save(userName, password);
-        UserService service = new UserService(userRepo);
+        UserRepo userRepoTestStub = mock(UserRepo.class);
+        when(userRepoTestStub.getUserBy(userName, password)).thenReturn(true);
+        UserService service = new UserService(userRepoTestStub);
 
         String token = service.login(userName, password);
 
