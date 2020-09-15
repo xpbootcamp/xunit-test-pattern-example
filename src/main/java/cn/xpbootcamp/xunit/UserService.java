@@ -1,16 +1,14 @@
 package cn.xpbootcamp.xunit;
 
-import java.util.HashMap;
-
 public class UserService {
-    private final HashMap<String, String> users;
+    private final UserRepo userRepo;
 
-    public UserService(HashMap<String, String> users) {
-        this.users = users;
+    public UserService(UserRepo userRepo) {
+        this.userRepo = userRepo;
     }
 
     public String login(String userName, String password) {
-        if (users.containsKey(userName) && users.get(userName).equals(password)) {
+        if (userRepo.getUserBy(userName, password)) {
             return "";
         }
         return null;
@@ -18,7 +16,7 @@ public class UserService {
 
     public void register(String userName, String password) {
         if (!userName.isEmpty() && !password.isEmpty()) {
-            users.put(userName, password);
+            userRepo.save(userName, password);
         }
     }
 }

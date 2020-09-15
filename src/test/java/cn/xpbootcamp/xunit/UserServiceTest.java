@@ -4,16 +4,14 @@ package cn.xpbootcamp.xunit;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-
 public class UserServiceTest {
     @Test
     public void should_login_success_when_user_login_given_valid_user_name_and_password() {
         String userName = "lisa";
         String password = "lisa123";
-        HashMap<String, String> users = new HashMap<>();
-        users.put(userName, password);
-        UserService service = new UserService(users);
+        UserRepo userRepo = new UserRepo();
+        userRepo.save(userName, password);
+        UserService service = new UserService(userRepo);
 
         String token = service.login(userName, password);
 
@@ -26,11 +24,11 @@ public class UserServiceTest {
     public void should_register_success_when_user_register_given_valid_user_name_and_password() {
         String userName = "lisa";
         String password = "lisa123";
-        HashMap<String, String> users = new HashMap<>();
-        UserService service = new UserService(users);
+        UserRepo userRepo = new UserRepo();
+        UserService service = new UserService(userRepo);
 
         service.register(userName, password);
 
-        Assertions.assertEquals(password, users.get(userName));
+        Assertions.assertTrue(userRepo.getUserBy(userName, password));
     }
 }
