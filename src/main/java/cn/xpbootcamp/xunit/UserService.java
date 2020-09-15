@@ -1,3 +1,5 @@
+package cn.xpbootcamp.xunit;
+
 import java.util.HashMap;
 
 public class UserService {

@@ -1,3 +1,6 @@
+package cn.xpbootcamp.xunit;
+
+import cn.xpbootcamp.xunit.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
