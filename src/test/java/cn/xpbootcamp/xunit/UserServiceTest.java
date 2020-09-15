@@ -1,4 +1,5 @@
-package java.cn.xpbootcamp.xunit;
+package cn.xpbootcamp.xunit;
+
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ public class UserServiceTest {
         String userName = "lisa";
         String password = "lisa123";
         HashMap<String, String> users = new HashMap<>();
-        var service = new UserService(users);
+        UserService service = new UserService(users);
 
         service.register(userName, password);
 
