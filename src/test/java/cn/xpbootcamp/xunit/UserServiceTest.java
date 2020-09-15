@@ -1,6 +1,5 @@
-package cn.xpbootcamp.xunit;
+package java.cn.xpbootcamp.xunit;
 
-import cn.xpbootcamp.xunit.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -27,10 +26,10 @@ public class UserServiceTest {
         String userName = "lisa";
         String password = "lisa123";
         HashMap<String, String> users = new HashMap<>();
-        UserService service = new UserService(users);
+        var service = new UserService(users);
 
         service.register(userName, password);
 
-        Assertions.assertNotEquals(0, users.size());
+        Assertions.assertEquals(password, users.get(userName));
     }
 }
