@@ -39,6 +39,24 @@ public class UserServiceTest {
         //GC(garbage-collect)销毁数据
     }
 
+    // spy创建了一个可运行的UserRepo类
+    // mock object创建了一个虚拟的UserRepo类，所有的操作都需要打桩
+    @Test
+    public void should_login_success_when_user_login_given_valid_user_name_and_password_use_mock() {
+        String userName = "lisa";
+        String password = "lisa123";
+        UserRepo userRepoMockObject = mock(UserRepo.class);
+        when(userRepoMockObject.getUserBy(userName, password)).thenReturn(true);
+        UserService service = new UserService(userRepoMockObject);
+
+        String token = service.login(userName, password);
+
+        Assertions.assertNotNull(token);
+        verify(userRepoMockObject, times(1)).getUserBy(userName, password);
+
+        //GC(garbage-collect)销毁数据
+    }
+
     @Test
     public void should_login_fail_when_user_login_given_invalid_user_name_and_password() {
         String invalidUserName = "li,_sa";
