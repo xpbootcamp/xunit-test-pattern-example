@@ -1,4 +1,4 @@
-package java.cn.xpbootcamp.xunit;
+package cn.xpbootcamp.xunit;
 
 import java.util.HashMap;
 
