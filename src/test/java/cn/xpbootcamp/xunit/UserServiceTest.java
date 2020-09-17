@@ -58,6 +58,20 @@ public class UserServiceTest {
     }
 
     @Test
+    public void should_login_success_when_user_login_given_valid_user_name_and_password() {
+        String userName = "lisa";
+        String password = "lisa123";
+        UserRepoFakeObject repoFakeObject = new UserRepoFakeObject();
+        UserService service = new UserService(repoFakeObject);
+
+        String token = service.login(userName, password);
+
+        Assertions.assertNotNull(token);
+
+        //GC(garbage-collect)销毁数据
+    }
+
+    @Test
     public void should_login_fail_when_user_login_given_invalid_user_name_and_password() {
         String invalidUserName = "li,_sa";
         String password = "lisa123";
