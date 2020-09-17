@@ -58,7 +58,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void should_login_success_when_user_login_given_valid_user_name_and_password() {
+    public void should_login_success_when_user_login_given_valid_user_name_and_password_use_fake() {
         String userName = "lisa";
         String password = "lisa123";
         UserRepoFakeObject repoFakeObject = new UserRepoFakeObject();
