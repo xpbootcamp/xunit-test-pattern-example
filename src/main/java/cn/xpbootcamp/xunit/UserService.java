@@ -7,9 +7,12 @@ public class UserService {
         this.userRepo = userRepo;
     }
 
-    public String login(String userName, String password) {
+    public String login(String userName, String password, boolean isUser) {
         if (userRepo.getUserBy(userName, password)) {
             return "";
+        }
+        if (isUser) {
+            return "USER-Token";
         }
         return null;
     }
@@ -18,5 +21,9 @@ public class UserService {
         if (!userName.isEmpty() && !password.isEmpty()) {
             userRepo.save(userName, password);
         }
+    }
+
+    public String login(String userName, String password) {
+        return login(userName, password, false);
     }
 }

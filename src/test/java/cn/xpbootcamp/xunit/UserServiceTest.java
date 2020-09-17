@@ -72,6 +72,22 @@ public class UserServiceTest {
     }
 
     @Test
+    public void should_login_success_when_user_login_given_valid_user_name_and_password_use_dummy() {
+        String userName = "lisa";
+        String password = "lisa123";
+        UserRepo userRepo = new UserRepo();
+        userRepo.users.put(userName, password);
+        UserService service = new UserService(userRepo);
+
+        boolean dummyObject = true;
+        String token = service.login(userName, password, dummyObject);
+
+        Assertions.assertNotNull(token);
+
+        //GC(garbage-collect)销毁数据
+    }
+
+    @Test
     public void should_login_fail_when_user_login_given_invalid_user_name_and_password() {
         String invalidUserName = "li,_sa";
         String password = "lisa123";
