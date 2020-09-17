@@ -20,7 +20,6 @@ public class UserServiceTest {
         String userName = "lisa";
         String password = "lisa123";
         UserRepoTestStub userRepoTestStub = new UserRepoTestStub();
-        userRepoTestStub.setUser(userName, password);
         AuditLogServiceTestSpy logServiceTestSpy = new AuditLogServiceTestSpy();
         UserService service = new UserService(userRepoTestStub, logServiceTestSpy);
 
@@ -36,7 +35,7 @@ public class UserServiceTest {
         String userName = "lisa";
         String password = "lisa123";
         UserRepo userRepoTestStub = mock(UserRepo.class);
-        when(userRepoTestStub.getUserBy(userName, password)).thenReturn(true);
+        when(userRepoTestStub.getUserBy(userName)).thenReturn(new User(userName, password));
         AuditLogServiceTestSpy logServiceTestSpy = new AuditLogServiceTestSpy();
         UserService service = new UserService(userRepoTestStub, logServiceTestSpy);
 
@@ -71,7 +70,6 @@ public class UserServiceTest {
         String userName = "lisa";
         String password = "lisa123";
         UserRepoTestStub userRepoTestStub = new UserRepoTestStub();
-        userRepoTestStub.setUser(userName, password);
         AuditLogService auditLogServiceTestSpy = spy(AuditLogService.class);
         UserService service = new UserService(userRepoTestStub, auditLogServiceTestSpy);
 
@@ -90,14 +88,14 @@ public class UserServiceTest {
         String userName = "lisa";
         String password = "lisa123";
         UserRepo userRepoMockObject = mock(UserRepo.class);
-        when(userRepoMockObject.getUserBy(userName, password)).thenReturn(false);
+        when(userRepoMockObject.getUserBy(userName)).thenReturn(null);
         AuditLogServiceTestSpy logServiceTestSpy = new AuditLogServiceTestSpy();
         UserService service = new UserService(userRepoMockObject, logServiceTestSpy);
 
         service.register(userName, password);
 
-        verify(userRepoMockObject, times(1)).getUserBy(userName, password);
-        verify(userRepoMockObject, times(1)).save(userName, password);
+        verify(userRepoMockObject, times(1)).getUserBy(userName);
+        verify(userRepoMockObject, times(1)).save(any());
 
         //GC(garbage-collect)销毁数据
     }
@@ -107,6 +105,7 @@ public class UserServiceTest {
         String userName = "lisa";
         String password = "lisa123";
         UserRepoFakeObject repoFakeObject = new UserRepoFakeObject();
+        repoFakeObject.save(new User(userName, password));
         AuditLogServiceTestSpy logServiceTestSpy = new AuditLogServiceTestSpy();
         UserService service = new UserService(repoFakeObject, logServiceTestSpy);
 
@@ -122,7 +121,7 @@ public class UserServiceTest {
         String userName = "lisa";
         String password = "lisa123";
         UserRepo userRepo = new UserRepo();
-        userRepo.users.put(userName, password);
+        userRepo.save(new User(userName, password));
         AuditLogServiceTestSpy logServiceTestSpy = new AuditLogServiceTestSpy();
         UserService service = new UserService(userRepo, logServiceTestSpy);
 
@@ -139,7 +138,7 @@ public class UserServiceTest {
         String invalidUserName = "li,_sa";
         String password = "lisa123";
         UserRepo userRepoTestStub = mock(UserRepo.class);
-        when(userRepoTestStub.getUserBy(invalidUserName, password)).thenReturn(false);
+        when(userRepoTestStub.getUserBy(invalidUserName)).thenReturn(new User("", ""));
         AuditLogServiceTestSpy logServiceTestSpy = new AuditLogServiceTestSpy();
         UserService service = new UserService(userRepoTestStub, logServiceTestSpy);
 

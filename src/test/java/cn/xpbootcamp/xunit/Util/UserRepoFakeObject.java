@@ -1,19 +1,21 @@
 package cn.xpbootcamp.xunit.Util;
 
 
+import cn.xpbootcamp.xunit.User;
 import cn.xpbootcamp.xunit.UserRepo;
 
 import java.util.HashMap;
 
 public class UserRepoFakeObject extends UserRepo {
-    HashMap<String, String> users = new HashMap<>();
+    HashMap<String, User> users = new HashMap<>();
 
     @Override
-    public boolean getUserBy(String userName, String password) {
-        return true;
+    public User getUserBy(String userName) {
+        return users.get(userName);
     }
 
     @Override
-    public void save(String userName, String password) {
+    public void save(User user) {
+        users.put(user.getName(), user);
     }
 }

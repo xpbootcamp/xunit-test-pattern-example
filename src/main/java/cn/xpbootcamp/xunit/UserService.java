@@ -16,7 +16,8 @@ public class UserService {
 
     public String login(String userName, String password, boolean isUser) {
         String currentDate = getCurrentDate();
-        if (userRepo.getUserBy(userName, password)) {
+        User user = userRepo.getUserBy(userName);
+        if (user != null && user.getPassword().equals(password)) {
             auditLogService.log("Login", userName, currentDate);
             return "Token";
         }
@@ -39,8 +40,8 @@ public class UserService {
     }
 
     public void register(String userName, String password) {
-        if (!userName.isEmpty() && !password.isEmpty() && !userRepo.getUserBy(userName, password)) {
-            userRepo.save(userName, password);
+        if (!userName.isEmpty() && !password.isEmpty() && userRepo.getUserBy(userName) == null) {
+            userRepo.save(new User(userName, password));
         }
     }
 
