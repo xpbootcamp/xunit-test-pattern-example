@@ -1,5 +1,8 @@
 package cn.xpbootcamp.xunit;
 
+import cn.xpbootcamp.xunit.Util.AuditLogServiceTestSpy;
+import cn.xpbootcamp.xunit.Util.UserRepoFakeObject;
+import cn.xpbootcamp.xunit.Util.UserRepoTestStub;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

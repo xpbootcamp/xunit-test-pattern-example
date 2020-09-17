@@ -1,4 +1,7 @@
-package cn.xpbootcamp.xunit;
+package cn.xpbootcamp.xunit.Util;
+
+
+import cn.xpbootcamp.xunit.UserRepo;
 
 public class UserRepoTestStub extends UserRepo {
     public void setUser(String username, String password) {
