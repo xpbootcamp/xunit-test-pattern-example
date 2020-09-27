@@ -29,6 +29,20 @@ public class UserServiceTest {
         //GC(garbage-collect)销毁数据
     }
 
+    //@Test
+    public void should_login_failed_when_user_login_given_invalid_user_name_and_password_use_hand_code_stub() {
+        String userName = "lisa";
+        String password = "lisa123";
+        UserRepoTestStub userRepoTestStub = new UserRepoTestStub();
+        UserService service = new UserService(userRepoTestStub, new AuditLogService());
+
+        String token = service.login(userName, password);
+
+        Assertions.assertNull(token);
+
+        //GC(garbage-collect)销毁数据
+    }
+
     @Test
     public void should_login_success_when_user_login_given_valid_user_name_and_password_use_stub_framework() {
         String userName = "lisa";

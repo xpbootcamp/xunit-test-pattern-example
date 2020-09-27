@@ -10,5 +10,6 @@ public class UserRepoTestStub extends UserRepo {
     @Override
     public User getUserBy(String userName) {
         return new User("lisa", "lisa123");
+        //        return new User("invalidName", "invalidPassword");
     }
 }
