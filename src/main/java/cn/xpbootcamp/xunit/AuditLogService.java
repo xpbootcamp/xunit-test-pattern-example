@@ -1,27 +1,14 @@
 package cn.xpbootcamp.xunit;
 
 public class AuditLogService {
-    private String action;
-    private String userName;
-    private String date;
 
-    public void log(String login, String userName, String date) {
+    private final UserAuditRepo userAuditRepo;
 
-        this.action = login;
-        this.userName = userName;
-        this.date = date;
-        // audit
+    public AuditLogService(UserAuditRepo userAuditRepo) {
+        this.userAuditRepo = userAuditRepo;
     }
 
-    public String getAction() {
-        return action;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getDate() {
-        return date;
+    public void log(String action, String userName, String date) {
+        userAuditRepo.save(action, userName, date);
     }
 }
