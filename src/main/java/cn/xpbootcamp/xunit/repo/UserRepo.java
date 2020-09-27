@@ -1,5 +1,6 @@
-package cn.xpbootcamp.xunit;
+package cn.xpbootcamp.xunit.repo;
 
+import cn.xpbootcamp.xunit.User;
 import cn.xpbootcamp.xunit.db.MysqlDB;
 
 public class UserRepo {

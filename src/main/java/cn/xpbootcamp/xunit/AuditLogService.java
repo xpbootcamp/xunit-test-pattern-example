@@ -1,5 +1,7 @@
 package cn.xpbootcamp.xunit;
 
+import cn.xpbootcamp.xunit.repo.UserAuditRepo;
+
 public class AuditLogService {
 
     private final UserAuditRepo userAuditRepo;

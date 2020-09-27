@@ -1,7 +1,7 @@
 package cn.xpbootcamp.xunit.Util;
 
 import cn.xpbootcamp.xunit.AuditLogService;
-import cn.xpbootcamp.xunit.UserAuditRepo;
+import cn.xpbootcamp.xunit.repo.UserAuditRepo;
 
 public class AuditLogServiceTestSpy extends AuditLogService {
     private String username;

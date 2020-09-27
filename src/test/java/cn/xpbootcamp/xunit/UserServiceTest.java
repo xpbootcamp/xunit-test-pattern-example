@@ -4,6 +4,8 @@ import cn.xpbootcamp.xunit.Util.AuditLogServiceTestSpy;
 import cn.xpbootcamp.xunit.Util.FakeInMemoryDB;
 import cn.xpbootcamp.xunit.Util.UserRepoTestStub;
 import cn.xpbootcamp.xunit.db.MysqlDB;
+import cn.xpbootcamp.xunit.repo.UserAuditRepo;
+import cn.xpbootcamp.xunit.repo.UserRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
